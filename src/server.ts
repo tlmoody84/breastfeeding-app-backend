@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { supabase } from '../supabaseClient'; // Ensure you import your Supabase client
 import userRoutes from './api/routes/userRoutes';  // Users route
-import feedsRoutes from './api/routes/feedsRoutes';  // Feeds route
+import feedsRoutes from './api/routes/feedsRoutes'
 import notesRoutes from './api/routes/notesRoutes';  // Notes route
 import postsRouter from './api/posts'; // Import posts router
 
@@ -28,3 +28,5 @@ app.use('/posts', postsRouter); // Using posts router
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+export default { feedsRoutes, notesRoutes, postsRouter }
