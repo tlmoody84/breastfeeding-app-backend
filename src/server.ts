@@ -7,7 +7,7 @@ import notesRoutes from './api/routes/notesRoutes';  // Notes route
 import postsRouter from './api/posts'; // Import posts router
 
 const app = express();
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(cors());
