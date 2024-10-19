@@ -44,7 +44,7 @@ router.put('/:id', async (req: Request, res: Response):Promise<void> => {
 
 // Delete a recipe
 router.delete('/:id', async (req: Request, res: Response):Promise<void> => {
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from('recipes')
         .delete()
         .eq('id', req.params.id);

@@ -1,7 +1,6 @@
 import { supabase } from '../../../supabaseClient';
 import { Request, Response } from 'express';
 
-// Create a new user
 export const createUser = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
@@ -14,7 +13,6 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(201).json(data);
 };
 
-// Get all users
 export const getUsers = async (req: Request, res: Response) => {
     const { data, error } = await supabase.from('users').select('*');
 

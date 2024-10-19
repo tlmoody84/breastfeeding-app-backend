@@ -1,7 +1,6 @@
 import { supabase } from '../../../supabaseClient';
 import { Request, Response } from 'express';
 
-// Create a new note
 export const createNote = async (req: Request, res: Response) => {
     const { user_id, note } = req.body;
 
@@ -13,7 +12,6 @@ export const createNote = async (req: Request, res: Response) => {
     res.status(201).json(data);
 };
 
-// Get all notes
 export const getNotes = async (req: Request, res: Response) => {
     const { data, error } = await supabase.from('notes').select('*');
 

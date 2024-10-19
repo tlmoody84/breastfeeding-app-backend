@@ -3,13 +3,11 @@ import { supabase } from '../../supabaseClient';
 
 const router = Router();
 
-// Add a like to a breastfeeding position image
 export const addLikeToImage = async (req: Request, res: Response) => {
     const { id: imageId } = req.params; 
 
-    // Check if the image exists
     const { data: image, error: imageError } = await supabase
-        .from('Public_images') // Table containing the images
+        .from('Public_images') 
         .select('id')
         .eq('id', imageId)
         .single();
@@ -18,22 +16,19 @@ export const addLikeToImage = async (req: Request, res: Response) => {
         return res.status(404).json({ message: "Breastfeeding image not found." });
     }
 
-    const userId = req.body.user_id; // Assuming the user ID is passed in the request body
-
-    // Validate user ID
+    const userId = req.body.user_id; 
     if (!userId) {
         return res.status(400).json({ message: "User ID is required." });
     }
 
-    // Check if the user has already liked this image
     const { data: existingLike, error: existingLikeError } = await supabase
-        .from('likes') // Table containing the likes
+        .from('likes') 
         .select('id')
         .eq('image_id', imageId)
         .eq('user_id', userId)
         .single();
 
-    if (existingLikeError && existingLikeError.code !== 'PGRST116') { // PGRST116 means no rows found
+    if (existingLikeError && existingLikeError.code !== 'PGRST116') { 
         return res.status(400).json({ message: existingLikeError.message });
     }
 
@@ -41,10 +36,9 @@ export const addLikeToImage = async (req: Request, res: Response) => {
         return res.status(400).json({ message: "You have already liked this image." });
     }
 
-    // Insert the like into the database
     const { data, error } = await supabase
-        .from('likes') // Table containing the likes
-        .insert([{ image_id: imageId, user_id: userId }]) // Use appropriate column names
+        .from('likes') 
+        .insert([{ image_id: imageId, user_id: userId }]) 
         .select();
 
     if (error) {
@@ -54,5 +48,4 @@ export const addLikeToImage = async (req: Request, res: Response) => {
     res.status(201).json({ message: 'Like added to breastfeeding image.', like: data });
 };
 
-// Export the router to use in your application
 export default router;

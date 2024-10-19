@@ -1,19 +1,16 @@
 import express, { Request, Response } from 'express';
-import { supabase } from '../../../supabaseClient'; // Adjust the path if necessary
+import { supabase } from '../../../supabaseClient'; 
 
 const router = express.Router();
 
-// Create a new feed post (POST)
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     const { author_name, title, content, author_id } = req.body;
 
-    // Validate the input
     if (!title || !content || (!author_name && !author_id)) {
         res.status(400).json({ error: "Title, content, and either author_name or author_id are required." });
         return;
     }
 
-    // Retrieve author_id based on author_name if not provided
     let finalAuthorId = author_id;
 
     if (author_name) {
@@ -28,10 +25,9 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        finalAuthorId = authorData.id; // Set the final author_id from the username
+        finalAuthorId = authorData.id; 
     }
 
-    // Insert new feed post into the database
     const { data, error } = await supabase
         .from('feeds')
         .insert([{ author_id: finalAuthorId, title, content }]);
@@ -80,7 +76,6 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     res.json(data);
 });
 
-// Delete a feed (DELETE)
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
 
@@ -94,8 +89,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
         return;
     }
 
-    res.status(204).send(); // No content to send back
+    res.status(204).send(); 
 });
 
-// Export the router
 export default router;
