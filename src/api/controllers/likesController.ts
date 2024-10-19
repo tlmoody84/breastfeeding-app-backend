@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { supabase } from '../../../supabaseClient';
+import { supabase } from '../../supabaseClient';
 
 export const addLikeToImage = async (req: Request, res: Response) => {
     const { id: imageId } = req.params;

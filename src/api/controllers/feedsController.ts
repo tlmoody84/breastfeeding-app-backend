@@ -1,4 +1,4 @@
-import { supabase } from '../../../supabaseClient';
+import { supabase } from '../../supabaseClient';
 import { Request, Response } from 'express';
 
 export const createFeed = async (req: Request, res: Response): Promise<Response> => {

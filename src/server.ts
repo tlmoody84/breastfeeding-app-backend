@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { supabase } from '../supabaseClient'; 
+import { supabase } from './supabaseClient'; 
 import userRoutes from './api/routes/userRoutes';
 import feedsRoutes from './api/routes/feedsRoutes';
 import notesRoutes from './api/routes/notesRoutes';
@@ -13,10 +13,11 @@ const PORT = process.env.PORT || 4000;
 
 
 app.use(cors({
-    origin: ['http://localhost:4000', 'http://localhost:4001', 'https://breastfeeding-frontend.vercel.app'],
+    origin: ['http://localhost:4001', 'https://breastfeeding-frontend.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
+
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {

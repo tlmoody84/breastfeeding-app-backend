@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { supabase } from '../../../supabaseClient'; 
+import { supabase } from '../../supabaseClient';
 
 const router = express.Router();
 
@@ -40,7 +40,6 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
     res.status(201).json(data);
 });
 
-// Get all feeds (GET)
 router.get('/', async (req: Request, res: Response): Promise<void> => {
     const { data, error } = await supabase.from('feeds').select('*');
 
@@ -52,12 +51,10 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
     res.json(data);
 });
 
-// Update a feed (PUT)
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const { title, content, author_id } = req.body;
 
-    // Validate the input
     if (!title && !content && !author_id) {
         res.status(400).json({ error: "At least one field (title, content, author_id) must be provided for update." });
         return;
