@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 
 
 app.use(cors({
-    origin: ['http://localhost:4000', 'http://localhost:4001'],
+    origin: ['http://localhost:4000', 'http://localhost:4001', 'https://breastfeeding-frontend.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
