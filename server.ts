@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { supabase } from './supabaseClient'; 
-import userRoutes from './api/routes/userRoutes';
-import feedsRoutes from './api/routes/feedsRoutes';
-import notesRoutes from './api/routes/notesRoutes';
-import postsRouter from './api/posts';
-import likesRoutes from './api/routes/likesRoutes';
-import recipesRoutes from './api/routes/recipesRoutes'; 
+import { supabase } from './src/supabaseClient'; 
+import userRoutes from './src/api/routes/userRoutes';
+import feedsRoutes from './src/api/routes/feedsRoutes';
+import notesRoutes from './src/api/routes/notesRoutes';
+import postsRouter from './src/api/posts';
+import likesRoutes from './src/api/routes/likesRoutes';
+import recipesRoutes from './src/api/routes/recipesRoutes'; 
 
 const app = express();
 const PORT = process.env.PORT || 4000;
