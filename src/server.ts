@@ -25,6 +25,12 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Come let your boobs hang freely!');
 });
 
+app.post('/api/likes/:imageId/like', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); 
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); 
+});
+
 app.use('/api/users', userRoutes);
 app.use('/api/feeds', feedsRoutes);
 app.use('/api/notes', notesRoutes);
