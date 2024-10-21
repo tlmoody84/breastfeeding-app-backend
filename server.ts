@@ -5,15 +5,18 @@ import feedsRoutes from './src/api/routes/feedsRoutes';
 import notesRoutes from './src/api/routes/notesRoutes';
 import postsRouter from './src/api/posts';
 import likesRoutes from './src/api/routes/likesRoutes';
-import recipesRoutes from './src/api/routes/recipesRoutes'; 
+import recipesRoutes from './src/api/routes/recipesRoutes';
+import dotenv from 'dotenv';
 
+
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(cors({
     origin: [
         'http://localhost:4001', 
-        // 'https://breastfeeding-frontend-jnlj2zga3-tlmoody84s-projects.vercel.app'
+        'https://breastfeeding-frontend-jnlj2zga3-tlmoody84s-projects.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
