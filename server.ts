@@ -11,10 +11,11 @@ import recipesRoutes from './src/api/routes/recipesRoutes';
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-
-
 app.use(cors({
-    origin: ['http://localhost:4001', 'https://breastfeeding-frontend.vercel.app'],
+    origin: [
+        'http://localhost:4001', 
+        'https://breastfeeding-frontend.vercel.app'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
@@ -22,15 +23,17 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Come let your boobs hang freely!');
+    res.send('Welcome to the Breastfeeding API!');
 });
 
-app.post('/api/likes/:imageId/like', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); 
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); 
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); 
+// Example endpoint for likes
+app.post('/api/likes/:imageId/like', (req: Request, res: Response) => {
+    const imageId = req.params.imageId;
+    // Logic for liking an image would go here
+    res.status(200).send({ message: 'Like added successfully', imageId });
 });
 
+// Route handlers
 app.use('/api/users', userRoutes);
 app.use('/api/feeds', feedsRoutes);
 app.use('/api/notes', notesRoutes);
