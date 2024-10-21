@@ -27,6 +27,11 @@ app.use(express.json());
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to the Breastfeeding API!');
 });
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}
 
 app.post('/api/likes/:imageId/like', (req: Request, res: Response) => {
     const imageId = req.params.imageId;
