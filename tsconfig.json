@@ -7,8 +7,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": ".",
-    "typeRoots": ["node_modules/@types", "./src/@types" ]
+    "rootDir": "./src",  // Update this line
+    "typeRoots": ["node_modules/@types", "./src/@types"]
   },
-  "include": ["src/**/*", "server.ts"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
